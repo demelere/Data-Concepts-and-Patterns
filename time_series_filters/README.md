@@ -7,8 +7,8 @@
 
 ## Problem types
 1. If your problem involves predicting future values, [Kalman](#kalman-filter) and [Exponential Smoothing](#exponential-smoothing-filter) are often used.
-2. If your problem involves smoothing out fluctuations and noise, [Moving Average](#moving-average-filter), [Gaussian](#gaussian-filter), or [Savitzky-Golay](#savitzky-golay-filter) are appropriate.
-3. If the signal and noise are distinctly different (e.g. audio or brain signal processing), [Butterworth](#butterworth-filter) filters can be helpful.
+2. If your problem involves smoothing out fluctuations and noise (e.g. spectroscopy, chromatography), [Moving Average](#moving-average-filter), [Gaussian](#gaussian-filter), or [Savitzky-Golay](#savitzky-golay-filter) are appropriate.
+3. If the signal and noise are distinctly different (e.g. any sort of signal processing like audio, brain computer interface, spectral), [Butterworth](#butterworth-filter) filters can be helpful.
 4. If the signal and noise are intertwined, you may need [Wavelet](#wavelet-filter) transforms.
 5. If your problem requires real-time processing, use [Kalman](#kalman-filter) filters
 6. If your problem requires maintaining the integrity of sudden changes (e.g. image edges), [Savitzky-Golay](#savitzky-golay-filter) or [Median](#median-filter) filters may be the right choice.
@@ -16,28 +16,63 @@
 ## Filter types
 
 #### Moving average filter
-Uses a moving average of the data points to smooth out short-term fluctuations and highlight long-term trends Calculates the average of different subsets of the full data set. Simple moving average and weighted moving average are common types.
+Uses a moving average of the data points to smooth out short-term fluctuations and highlight long-term trends
+* Calculates the average of different subsets of the full data set. Simple moving average and weighted moving average are common types.
+* Smooths out short-term fluctuations, easy to understand and implement.
+* Lags behind the trend, not effective in forecasting future values.
+* Stock market analysis, economic trends
 
 #### Exponential smoothing filter
-Gives more weight to recent data points, making it more responsive to changes in the underlying signal. 
+Gives more weight to recent data points, making it more responsive to changes in the underlying signal. Assigns exponentially decreasing weights over time.  
+* Simple, effective for data with a trend, good for short-term forecasting.
+* Not suitable for data with seasonality or higher-order structures.
+* Stock prices and economic indicators
 
 #### Gaussian filter
 Uses a Gaussian function to smooth the signal by averaging the data points within a certain range. 
+* Applies a Gaussian kernel to smooth data. It's a linear filter that reduces noise while maintaining edges.
+* Good at preserving edges in images and time series.
+* Can blur sharp edges in high-contrast signals.
+* Image processing, signal noise reduction
 
 #### Wavelet filter
 Uses wavelet decomposition to separate the signal into different frequency bands, allowing for the removal of specific frequency components. 
+* Decomposes a signal into its constituent wavelets, which are scaled and shifted versions of a mother wavelet.
+* Good for non-stationary signals, captures both frequency and location in time.
+* More complex, requires understanding of wavelet selection.
+* Image compression, denoising signals
 
 #### Median filter
 Replaces each data point with the median value of the data points in a certain range, effectively removing outliers. 
+* Replaces each entry with the median of neighboring entries. It is a non-linear filter.
+* Effective in removing 'salt and pepper' type noise, preserves edges.
+* Not suitable for smoothing out high-frequency components.
+* Digital image processing, removing outliers in data
 
 #### Fourier transform filter
 Uses the Fourier transform to convert the signal from the time domain to the frequency domain, allowing for the removal of specific frequency components.
+* Converts time series data into the frequency domain using the Fourier transform. It decomposes a function into its constituent frequencies.
+* Identifies periodicities, good for signal processing
+* Assumes periodic signals, can be complex to interpret
+* Signal processing, spectral analysis
 
 #### Kalman filter
 Uses a combination of mathematical techniques to estimate the state of a system based on a series of noisy measurements. It is commonly used for filtering data in the presence of random noise and model uncertainty. 
+* A recursive filter that estimates the state of a linear dynamic system from a series of noisy measurements.
+* Works well in real-time, good for systems with uncertainty.
+* Assumes linear dynamics and Gaussian noise, complex to implement.
+* Navigation, mobility systems, econometrics
 
 #### Butterworth filter
 A type of low-pass filter that removes high-frequency noise while preserving the low-frequency signal. 
+* Designed to have a frequency response as flat as possible in the passband. It uses a maximally flat magnitude filter.
+* Smooth response in the pass band, relatively simple design.
+* Slow roll-off response
+* Audio processing, embedded hardware and sensors
 
 #### Savitzky-Golay filter
 Uses a polynomial fitting method to smooth the signal while preserving the signal's shape and features. 
+* Performs a local polynomial regression to determine the smoothed values. It preserves higher momentums better than a simple moving average.
+* Preserves features of the distribution such as relative maxima, minima, and width.
+* Less effective for very noisy data
+* Spectroscopy, chromatography
