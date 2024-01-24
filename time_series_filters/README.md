@@ -1,24 +1,20 @@
 ## Data characteristics
-1. If the data exhibits gradual and smooth transitions (e.g. economic data), [Exponential Smoothing](#exponential-smoothing-filter) or [Moving Average](#moving-average-filter) are effective.
-2. If the data has abrupt changes (e.g. stock market prices), use filters that preserve edges like [Gaussian](#gaussian-filter) or [Savitzky-Golay](#savitzky-golay-filter) are more suitable.
+1. If your data exhibits gradual and smooth transitions (e.g. economic data), [Exponential Smoothing](#exponential-smoothing-filter) or [Moving Average](#moving-average-filter) are effective.
+2. If your data has abrupt changes (e.g. stock market prices), use filters that preserve edges like [Gaussian](#gaussian-filter) or [Savitzky-Golay](#savitzky-golay-filter) are more suitable.
 3. If your data is very noisy (e.g. raw sensor data), ise a [Median](#median-filter) filter to remove noise without affecting the signal too much.  For moderate noise, [Gaussian](#gaussian-filter) or [Wavelet](#wavelet-filter) filters may also work.  
-4. If the data has clear periodic patterns (e.g. seasonal patterns in sales data), use [Fourier Transform](#fourier-transform-filter).  [Wavelet](#wavelet-filter) transforms might do well with data with complex, non-repetitive patterns.
+4. If your data has clear periodic patterns (e.g. seasonal patterns in sales data), use [Fourier Transform](#fourier-transform-filter).  [Wavelet](#wavelet-filter) transforms might do well with data with complex, non-repetitive patterns.
+5. If your data changes its statistical properties over time (stationarity, e.g. tracking a moving object), [Kalman Filters](#kalman-filter) may be ideal.
 
 ## Problem types
-1. If the data changes its statistical properties over time (stationarity, e.g. tracking a moving object), [Kalman Filters](#kalman-filter) may be ideal.
+1. If your problem involves predicting future values, [Kalman](#kalman-filter) and [Exponential Smoothing](#exponential-smoothing-filter) are often used.
+2. If your problem involves smoothing out fluctuations and noise, [Moving Average](#moving-average-filter), [Gaussian](#gaussian-filter), or [Savitzky-Golay](#savitzky-golay-filter) are appropriate.
+3. If the signal and noise are distinctly different (e.g. audio or brain signal processing), [Butterworth](#butterworth-filter) filters can be helpful.
+4. If the signal and noise are intertwined, you may need [Wavelet](#wavelet-filter) transforms.
+5. If your problem requires real-time processing, use [Kalman](#kalman-filter) filters
+6. If your problem requires maintaining the integrity of sudden changes (e.g. image edges), [Savitzky-Golay](#savitzky-golay-filter) or [Median](#median-filter) filters may be the right choice.
 
-### 2. If the problem involves predicting future values
+## Filter types
 
-### 3. If the problem involves smoothing out fluctuations and noise
-
-### 4. If the signal and noise are distinctly different
-
-### 5. If the signal and noise are intertwined
-
-### 6. If you the problem requires real-time application
-
-### 7. If the problem requires maintaining the integrity of sudden changes
- 
 #### Moving average filter
 Uses a moving average of the data points to smooth out short-term fluctuations and highlight long-term trends Calculates the average of different subsets of the full data set. Simple moving average and weighted moving average are common types.
 
