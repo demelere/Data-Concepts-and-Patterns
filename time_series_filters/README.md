@@ -1,3 +1,6 @@
+Run `pip install -r requirements.txt` on first use
+Run `pip freeze > requirements.txt` if additional packages are needed
+
 ## Data characteristics
 1. If your data exhibits gradual and smooth transitions (e.g. economic data), [Exponential Smoothing](#exponential-smoothing-filter) or [Moving Average](#moving-average-filter) are effective.
 2. If your data has abrupt changes (e.g. stock market prices), use filters that preserve edges like [Gaussian](#gaussian-filter) or [Savitzky-Golay](#savitzky-golay-filter) are more suitable.
