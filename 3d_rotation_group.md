@@ -10,32 +10,32 @@ $\gamma$: aka Yaw, rotation around the z axis.
 
 Rotation around the x axis.  
 ```math
-R_x($\alpha$) =  
+R_x(\alpha) =  
 \begin{bmatrix}  
 1 & 0 & 0 \\  
-0 & $\cos$ $\alpha$ & -$\sin$ $\alpha$ \\  
-0 & $\sin$ $\alpha$ & $\cos$ $\alpha$  
+0 & \cos \alpha & -\sin \alpha \\  
+0 & \sin \alpha & \cos \alpha  
 \end{bmatrix}  
 ```
 
 Rotation around the y axis.
-$$\[
-R_y(\beta) = \left[ \begin{array}{ccc}
+```math
+R_y(\beta) =
+\begin{bmatrix}
 \cos \beta & 0 & \sin \beta \\
 0 & 1 & 0 \\
 -\sin \beta & 0 & \cos \beta
-\end{array} \right]
-\]$$
+\end{bmatrix}
+```
 
 Rotation around the z axis.
-$$
-\[
-R_z(\gamma) = \left[ \begin{array}{cccc}
+```math
+R_z(\gamma) = 
+\begin{bmatrix}
 \cos \gamma & -\sin \gamma & 0 & 0 \\
 \sin \gamma & \cos \gamma & 0 & 0 \\
 0 & 0 & 1 & 0 \\
 0 & 0 & 0 & 1
-\end{array} \right]
-\]
-$$
+\end{bmatrix}
+```
 
