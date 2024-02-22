@@ -4,18 +4,18 @@
 
 Euler angles are a set of three angles introduced by Leonhard Euler that are used to describe the orientation or rotation of a rigid body in three-dimensional space.
 
-$\alpha$: Often be called as Roll, rotation around the x axis.  
-$\beta$: Often be called as Pitch, rotation around the y axis.  
-$\gamma$: Often be called as Yaw, rotation around the z axis.  
+$\alpha$: aka Roll, rotation around the x axis.  
+$\beta$: aka Pitch, rotation around the y axis.  
+$\gamma$: aka Yaw, rotation around the z axis.  
 
-Rotation around the x axis.
+Rotation around the x axis.  
 $$
 R_x($\alpha$) =
-\begin{matrix}
+\begin{bmatrix}
 1 & 0 & 0 \\
 0 & $\cos$ $\alpha$ & -$\sin$ $\alpha$ \\
 0 & $\sin$ $\alpha$ & $\cos$ $\alpha$
-\end{matrix}
+\end{bmatrix}
 $$
 
 Rotation around the y axis.
