@@ -10,13 +10,12 @@ $\gamma$: Often be called as Yaw, rotation around the z axis.
 
 Rotation around the x axis.
 $$
-\[
-R_x(\alpha) = \left[ \begin{array}{ccc}
+\begin{matrix}
+R_x($\alpha$) =
 1 & 0 & 0 \\
-0 & \cos \alpha & -\sin \alpha \\
-0 & \sin \alpha & \cos \alpha
-\end{array} \right]
-\]
+0 & $\cos$ $\alpha$ & -$\sin$ $\alpha$ \\
+0 & $\sin$ $\alpha$ & $\cos$ $\alpha$
+\end{matrix}
 $$
 
 Rotation around the y axis.
