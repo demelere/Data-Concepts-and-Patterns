@@ -105,3 +105,55 @@ If the angles are small enough, the following approximations hold true:
 * $cos(a) \approx 1$
 * $sin(a)\approx a$
 * $sin(a)sin(b) \approx 0$
+
+By substituting these approximations into equations (8) or (9), we can obtain the same results.
+```math
+\begin{aligned}
+R_{xyz} \approx R_{zxy} &\approx
+\left[\begin{matrix} 1 &  -  \gamma & \beta \\
+\gamma & 1 & - \alpha \\
+-\beta & \alpha & 1 \\
+\end{matrix}\right] \\
+&= I +
+\left[\begin{matrix} 0 &  -  \gamma & \beta \\
+\gamma & 0 & - \alpha \\
+-\beta & \alpha & 0 \\
+\end{matrix}\right] \\
+&= I + \skew{\omega}
+\end{aligned}
+\qquad if \quad \alpha, \beta, \gamma \ll 1
+\tag{6}
+```
+
+Here, $\skew{\omega}$ is a [skew-symmetric matrix](https://en.wikipedia.org/wiki/Skew-symmetric_matrix). A skew-symmetric matrix is a square matrix where the transpose of the matrix is equal to the negation of the matrix itself.
+
+Now that we can obtain a commutative represention of a small rotation by a 3d vector. The remaining question is how to represent a larger rotation?
+
+If we desire a larger rotation, we can simply divide the 3D vector 
+ into n pieces and compose them as follows:
+
+ ```math
+ R(\omega) =
+\underbrace{(I+\frac{\skew{\omega}}{n}) \times ...  (I+\frac{\skew{\omega}}{n})}_\text{n factors}
+=(I+\frac{\skew{\omega}}{n})^n
+\tag{7}
+```
+
+For real numbers, this series is very famous, shows a way to compute the exponential function. Similarly, we can extend the definition of exponential function to skew-symmetric matrix.
+
+```math
+R(\omega)
+=(I+\frac{\skew{\omega}}{n})^n = e^{\skew{\omega}}
+\tag{8}
+```
+
+The exponential sum formula is also applicable to skew-symmetric matrix. Now, the exponential map (8) or (9) can transform a 3d vector into a rotation matrix.
+
+```math
+R(\omega)
+= e^{\skew{\omega}}
+=\sum_{k=0}^\infty \frac{\skew{\omega}^k}{k!}
+\tag{9}
+```
+
+Actually, some part of Lie group theories have been described in above. The 3D rotation space $R$ is called as _special orthogonal group_ $SO(3)$. The 3d vector $\omega$ is called the Lie algebra associated with SO(3) by the exponential map.
