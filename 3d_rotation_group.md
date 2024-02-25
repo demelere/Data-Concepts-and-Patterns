@@ -157,3 +157,133 @@ R(\omega)
 ```
 
 Actually, some part of Lie group theories have been described in above. The 3D rotation space $R$ is called as _special orthogonal group_ $SO(3)$. The 3d vector $\omega$ is called the Lie algebra associated with SO(3) by the exponential map.
+
+## Group
+
+A [Group](https://en.wikipedia.org/wiki/Group_(mathematics)
+) satisfied following requirements, known as group axioms.
+
+
+* Closure:
+ if $ a_1, a_2 \in G$, then $a_1 \cdot a_2 \in G$
+* Associativity:
+ if $ a_1, a_2, a_3 \in G$, then $(a_1 \cdot a_2) \cdot a_3 = a_1 \cdot ( a_2 \cdot a_3) $
+* Identity:
+ For every $ a \in G$, there exists a $a_0 \in G$, such that $ a_0 \cdot a = a \cdot a_0 = a $
+* Invertibility:
+ For every $ a \in G$, there exists a $a^{-1} \in G$, such that $ a \cdot a^{-1} = a_0 $
+
+
+For example, the Rubik's Cube group is a group, we can simply verify that the group axioms are satisfied for it.
+
+![cube](https://upload.wikimedia.org/wikipedia/commons/a/a6/Rubik%27s_cube.svg)
+
+##  Lie group
+
+A Lie group is a continuous group, which means a Lie group is infinitely differentiable (smooth).
+Therefore, The Rubik's Cube group, on the other hand, is a group but not a Lie group. In contrast, 3D rotation space is both a group and a Lie group.
+
+Due to several advantages, Lie groups and Lie algebras are commonly used to represent rotations in modern SLAM (Simultaneous Localization and Mapping) studies. These advantages include:
+
+* Lie algebra only requires three values to represent a rotation..
+* A Lie groups or Lie algebras is differentiable.
+* Gimbal lock problems do not occur in Lie groups or Lie algebras.
+* For small rotations, Lie groups are easily linearized (6).
+
+## Special orthogonal group $SO(3)$
+
+### Exponential map
+We can map a $\so3$ to $SO(3)$ using equations (8) or (9), However, these calculations can be quite complex. To simplify the process, we introduce the following definitions:
+
+We define $\omega = \theta r$
+* $r$ is a unit vector of $\omega$, $ r =\frac{\omega}{\norm{\omega}} $.
+* $\theta$ is the norm of a $\omega$, $ \theta = \norm{\omega} $  
+
+The exponential map can be computed as follows:
+
+$$
+\begin{aligned} 
+\exp ( \skew{\omega} ) 
+&= \exp ( \theta \skew{r} ) \\ 
+&= \sum\limits_{k = 0}^\infty 
+\frac{1}{k!} (\theta \skew{r} )^n \\
+&= I + \theta \skew{r} + 
+\frac{1}{2!} \theta^2 \skew{r}^2 +
+\frac{1}{3!} \theta^3 \skew{r}^3 +
+\frac{1}{4!} \theta^4 \skew{r}^4 + ... \\ 
+&= r^T r - 
+\skew{r}^2 + \theta \skew{r} +
+\frac{1}{2!} \theta^2 \skew{r}^2 +
+\frac{1}{3!} \theta^3 \skew{r}^3 +
+\frac{1}{4!} \theta^4 \skew{r}^4 + ... \\ 
+&= r^T r - (\skew{r}^2 - 
+\frac{1}{2!} \theta^2 \skew{r}^2 -
+\frac{1}{4!} \theta^4 \skew{r}^4 - ...) + (\theta \skew{r} +\frac{1}{3!} \theta^3 \skew{r}^3 + ...) \\ 
+&= r^T r - (1 - 
+\frac{1}{2!} \theta^2  +
+\frac{1}{4!} \theta^4  - ...)\skew{r}^2 + (\theta -\frac{1}{3!}  \skew{r}^3 + ...)\skew{r} \\ 
+&= r^T r - cos\theta \skew{r}^2 + sin\theta\skew{r} \\ 
+&= \skew{r}^2 + I - cos\theta \skew{r}^2 + sin\theta\skew{r} \\ 
+&= I + (1- cos\theta) \skew{r}^2 + sin\theta\skew{r} 
+\end{aligned} 
+\tag{10}
+$$
+
+In (10) two properties of skew symmetric matrices are used.
+If $r$ is a unit vector:
+* $\skew{r}\skew{r}\skew{r} = -\skew{r} $
+* $r^Tr = \skew{r}^2 + I $
+
+
+
+The formula (10) represents a fast way to calculate the exponential map from $\so3$ to $SO(3)$, and is known as [Rodrigues' Formula](https://en.wikipedia.org/wiki/Rodrigues%27_rotation_formula).
+
+### Logarithm map
+
+In contrast to exponential map, the logarithm map corresponds a Lie algebra to a Lie group.
+
+The formula (10) can be wrtten as matrix:
+
+$$
+\begin{aligned} 
+R(\theta, r) 
+&= I + (1- cos\theta) \
+\left[\begin{matrix} 
+1-r_1^2  & r_1 r_2 & r_1 r_3 \\
+r_1 r_2 & 1-r_1^2 & -r_2 r_3 \\
+-r_1 r_3 & r_2 r_3 & 1-r_1^2 \\
+\end{matrix}\right] + 
+sin\theta
+\left[\begin{matrix} 
+0 & -r_3 & r_2 \\
+r_3 & 0 & -r_1 \\
+-r_2 & r_1 & 0 \\
+\end{matrix}\right] \\
+&= \left[\begin{matrix} 
+r_1^2 (1-cos\theta) + cos\theta        & r_1 r_2 (1-cos\theta) - r_3 sin\theta & r_1 r_3 (1-cos\theta) + r_2 sin\theta\\
+r_1 r_2 (1-cos\theta) +r_3 sin\theta   & r_2^2 (1-cos\theta) + cos\theta      & -r_2 r_3 (1-cos\theta) - r_1 sin\theta\\
+-r_1 r_3 (1-cos\theta) -r_2 sin\theta  & r_2 r_3 (1-cos\theta) + r_1 sin\theta & r_3^2 (1-cos\theta) + cos\theta\\
+\end{matrix}\right]
+\end{aligned} 
+\tag{11}
+$$
+
+From equation (11), we can derive the following formulas:
+
+$$
+\theta = arccos( \frac{1}{2}(R_{11} + R_{22} + R_{33} -1)) \\
+= arccos( \frac{1}{2}(tr(r)) -1)
+\tag{12}
+$$
+
+$$
+r = [ R_{32} - R_{23}, R_{13} - R_{31}, R_{12} - R_{21}]/2 sin \theta 
+\tag{13}
+$$
+
+From equations (12) and (13), the logarithm map can be implemented as follows:
+
+$$
+log(R)^{\vee} = \omega = \frac{\theta[ R_{32} - R_{23}, R_{13} - R_{31}, R_{12} - R_{21}]}{2 sin \theta}  
+\tag{14}
+$$
