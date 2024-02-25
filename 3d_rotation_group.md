@@ -125,6 +125,26 @@ R_{xyz} \approx R_{zxy} &\approx
 \tag{6}
 ```
 
+```math
+\[
+R_{xyz} \approx R_{zxy} \approx
+\begin{bmatrix}
+1 & -\gamma & \beta \\
+\gamma & 1 & -\alpha \\
+-\beta & \alpha & 1 \\
+\end{bmatrix}
+= I +
+\begin{bmatrix}
+0 & -\gamma & \beta \\
+\gamma & 0 & -\alpha \\
+-\beta & \alpha & 0 \\
+\end{bmatrix}
+= I + \text{skew}(\omega)
+\]
+
+if \( \alpha, \beta, \gamma \ll 1 \) (6)
+```
+
 Here, $\skew{\omega}$ is a [skew-symmetric matrix](https://en.wikipedia.org/wiki/Skew-symmetric_matrix). A skew-symmetric matrix is a square matrix where the transpose of the matrix is equal to the negation of the matrix itself.
 
 Now that we can obtain a commutative represention of a small rotation by a 3d vector. The remaining question is how to represent a larger rotation?
