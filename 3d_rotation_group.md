@@ -108,7 +108,7 @@ If the angles are small enough, the following approximations hold true:
 
 By substituting these approximations into equations (8) or (9), we can obtain the same results.
 ```math
-\begin{aligned}
+\begin{align}
 R_{xyz} \approx R_{zxy} &\approx
 \left[\begin{matrix} 1 &  -  \gamma & \beta \\
 \gamma & 1 & - \alpha \\
@@ -120,13 +120,12 @@ R_{xyz} \approx R_{zxy} &\approx
 -\beta & \alpha & 0 \\
 \end{matrix}\right] \\
 &= I + \skew{\omega}
-\end{aligned}
+\end{align}
 \qquad if \quad \alpha, \beta, \gamma \ll 1
 \tag{6}
 ```
 
 ```math
-\[
 R_{xyz} \approx R_{zxy} \approx
 \begin{bmatrix}
 1 & -\gamma & \beta \\
@@ -140,9 +139,9 @@ R_{xyz} \approx R_{zxy} \approx
 -\beta & \alpha & 0 \\
 \end{bmatrix}
 = I + \text{skew}(\omega)
-\]
 
-if \( \alpha, \beta, \gamma \ll 1 \) (6)
+
+if \alpha, \beta, \gamma \ll 1  (6)
 ```
 
 Here, $\skew{\omega}$ is a [skew-symmetric matrix](https://en.wikipedia.org/wiki/Skew-symmetric_matrix). A skew-symmetric matrix is a square matrix where the transpose of the matrix is equal to the negation of the matrix itself.
