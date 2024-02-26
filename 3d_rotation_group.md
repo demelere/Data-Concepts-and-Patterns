@@ -108,7 +108,7 @@ If the angles are small enough, the following approximations hold true:
 
 By substituting these approximations into equations (8) or (9), we can obtain the same results.
 ```math
-\begin{align*}
+\begin{aligned}
 R_{xyz} \approx R_{zxy} &\approx
 \left[\begin{matrix} 1 &  -  \gamma & \beta \\
 \gamma & 1 & - \alpha \\
@@ -120,7 +120,7 @@ R_{xyz} \approx R_{zxy} &\approx
 -\beta & \alpha & 0 \\
 \end{matrix}\right] \\
 &= I + \skew{\omega}
-\end{align*}
+\end{aligned}
 \qquad if \quad \alpha, \beta, \gamma \ll 1
 \tag{6}
 ```
