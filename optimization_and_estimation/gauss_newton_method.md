@@ -20,14 +20,14 @@ The Gauss-Newton methods are used to solve nonlinear least-squares problems. Unl
 
 Taylor expansion around the initial guess x.
 
-$$ 
+```math 
 \begin{aligned}
 F &= \sum_{i=0}^{n} (r(x + \Delta{x})^T \Sigma^{-1} r(x + \Delta{x})) \\
 &= \underbrace{\sum (r^T  \Sigma^{-1} r)}_\textrm{c} +
 2 \underbrace{\sum(r^T \Sigma^{-1} J)}_\textrm{g} \Delta{x}+ 
  \Delta{x}^T \underbrace{\sum(J^T \Sigma^{-1} J)}_\textrm{H} \Delta{x}
 \end{aligned}
-$$
+```
 
 
 Here,  c represents a constant, g is the gradient vector, and H is the Hessian matrix of F.
@@ -119,7 +119,7 @@ $$
 \end{bmatrix} \tag{11}
 $$
 
-$$
+```math
 \begin{aligned}
 \dot{r} 
 &= \frac{R_{0}\widehat{\delta}a}{\delta} \\
@@ -145,5 +145,5 @@ I & [ - a ]_{\times} \\
 \end{bmatrix} 
 \end{aligned}
 \tag{12}
-$$
+```
 
