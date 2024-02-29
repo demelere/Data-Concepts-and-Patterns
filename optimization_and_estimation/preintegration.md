@@ -32,17 +32,17 @@ $\xi$ represents bias corrected preintegration measurement (PIM), which take 2 p
 
 #### The Jacobian of $s_i$
 
-$$
+```math
 J^{s_j^*}_{s_i} = J^{\mathscr{R}}_{s_i} + J^{\mathscr{R}}_{\mathscr{D}} J^{\mathscr{D}}_{s_i} 
 \tag{4}
-$$ 
+```
 
 #### The Jacobian of $b$
 
-$$
+```math
 J^{s_j^*}_{b} = J^{\mathscr{R}}_{\mathscr{D}} J^{\mathscr{D}}_{\xi} J^{\xi}_{b}  
 \tag{5}
-$$ 
+```
 
 ### Preintegration measurement (PIM)
 The PIM $\zeta(R(\theta), p ,v)$ integrates all the IMU measurements  without considering the IMU bias and the gravity.
@@ -111,7 +111,7 @@ C = \frac{\partial{\zeta_{k+1}}}{\partial \omega^b_k} =
 \tag{10}
 $$
 
-Where $H$ is the Jocabian for $\exp$: $\exp(a+\delta{x}) = \exp(a) + H(a)\delta{x}$
+Where $H$ is the Jacobian for $\exp$: $\exp(a+\delta{x}) = \exp(a) + H(a)\delta{x}$
 
 ### Bias correct
 We want correct $\zeta$ by a given accelerometer and gyroscope bias.   
@@ -131,12 +131,12 @@ a\oplus b = [\log(\exp(\theta_a)\exp(\theta_b)), p_a+p_b, v_a+v_b]
 \tag{12}
 $$
 
-#### The jocabian of bias for corrected PIM.
+#### The Jacibian of bias for corrected PIM.
 
-$$
+```math
 J^{\xi}_{b} =  [ \frac{\partial{\zeta}}{\partial b_{acc}}, \frac{\partial{\zeta}}{\partial b_{\omega}}] 
 \tag{13}
-$$
+```
 
 #### Find the partial derivatives of accelerometer's bias
 
@@ -195,9 +195,9 @@ $$
 * $*$ denotes the predicted navigation state.
 
 
-#### The jocabian matrix of navigation state
+#### The Jacobian matrix of navigation state
 
-$$
+```math
 \begin{aligned}
 J^{\mathscr{D}}_{s_i}
 &=
@@ -216,58 +216,58 @@ J^{\mathscr{D}}_{s_i}
 \tag{20}
 $$
 
-#### The jocabian matrix of $\xi$
+#### The Jacobian matrix of $\xi$
 
-$$
+```math
 J^{\mathscr{D}}_{\xi}=\begin{bmatrix}
  I_{3\times3} & 0_{3\times3} & 0_{3\times3}\\  
  0_{3\times3} & I_{3\times3} & 0_{3\times3}\\  
  0_{3\times3} & 0_{3\times3} & I_{3\times3}\\   
 \end{bmatrix} 
 \tag{21}
-$$
+```
 
 
 ### Retraction $\mathscr{R}$
 The retract action $\mathscr{R}$ which defined on navigation state  takes 2 parameters: $s_i$ and $\mathscr{D}$ to predict $s_j$.
 * $s_j^*$ is the predicted $s_j$.
 
-$$
+```math
 \begin{aligned}
 R_{nc}^{*} &= R_{nb}R_{bc} \\
 p_{nc}^{*} &= p_{nb} + R_{nb} p_{bc} \\
 v_{nc}^{*} &= v_{nb} + R_{nb} v_{bc} 
 \end{aligned}
 \tag{22}
-$$
+```
 
 #### Derivative of $s_i$
 
-$$
+```math
 J^{\mathscr{R}}_{s_i}=\begin{bmatrix}
  R_{bc}^{-1} & 0_{3\times3} & 0_{3\times3}\\  
  -R_{bc}^{-1} \widehat{p_{bc}} & R_{bc}^{-1} & 0_{3\times3}\\  
  -R_{bc}^{-1} \widehat{v_{bc}} & 0_{3\times3} & R_{bc}^{-1}\\   
 \end{bmatrix} 
 \tag{23}
-$$
+```
 
 #### Derivative of $d$
 
-$$
+```math
 J^{\mathscr{R}}_{d}=\begin{bmatrix}
  I_{3\times3} & 0_{3\times3} & 0_{3\times3}\\  
  0_{3\times3} & R_{bc}^{-1} & 0_{3\times3}\\  
  0_{3\times3} & 0_{3\times3} & R_{bc}^{-1}\\   
 \end{bmatrix} 
 \tag{24}
-$$
+```
 
 ## Navigation state prediction error (residual function)
 
 If navigtion $state_j$ is measured by sensors, we can calculate the error between $state_j$ and $state_j^*$.
 
-$$
+```math
 r_{jj^*}=\mathscr{L}(s_j,s_j^*) =
 \begin{bmatrix}
  \Delta{R} \\  
@@ -280,30 +280,30 @@ r_{jj^*}=\mathscr{L}(s_j,s_j^*) =
  R_j^{-1} (v_j^* - v_j) \\   
 \end{bmatrix} 
 \tag{25}
-$$
+```
 
 Local $\mathscr{L}$  is the inverse function of $\mathscr{R}$, which takes two navigation states, and get the delta between the two states in tangent vector space
 #### Derivative of an $s_j$
 
-$$
+```math
 J^{\mathscr{L}}_{s_j}=\begin{bmatrix}
  -\Delta{R}^{-1}  & 0_{3\times3} & 0_{3\times3}\\  
  \widehat{\Delta{p}} & -I_{3\times3} & 0_{3\times3}\\  
  \widehat{\Delta{v}} & 0_{3\times3} &-I_{3\times3}\\   
 \end{bmatrix} 
 \tag{26}
-$$
+```
 
 #### Derivative of an $s_j^*$
 
-$$
+```math
 J^{\mathscr{L}}_{s_j^*}=\begin{bmatrix}
  I_{3\times3}& 0_{3\times3} & 0_{3\times3}\\  
  0_{3\times3} & \Delta{R} & 0_{3\times3}\\  
  0_{3\times3} & 0_{3\times3} &\Delta{R}\\   
 \end{bmatrix} 
 \tag{27}
-$$
+```
 
 ### Overall Jaccobian for prediction error
 
@@ -314,17 +314,17 @@ J^r_{s_j} = J^{\mathscr{L}}_{s_j}
 \tag{28}
 $$
 
-$$
+```math
 J^r_{s_i} = J^{\mathscr{L}}_{s_j^*} J^{s_j^*}_{s_i} = 
 J^{\mathscr{L}}_{s_j^*}(J^{\mathscr{R}}_{s_i} + J^{\mathscr{R}}_{\mathscr{D}} J^{\mathscr{D}}_{s_i})
 \tag{29}
-$$
+```
 
-$$
+```math
 J^r_{b} = J^{\mathscr{L}}_{s_j^*} J^{s_j^*}_{b} = 
 J^{\mathscr{L}}_{s_j^*}J^{\mathscr{R}}_{\mathscr{D}} J^{\mathscr{D}}_{\xi} J^{\xi}_{b}
 \tag{30}
-$$
+```
 
 ---
 
@@ -490,13 +490,13 @@ $$
 ### A-3. Proof of Retraction $\mathscr{R}$ (23)(24)
 The $\mathscr{R}$ function:
  
-$$
+```math
 \begin{aligned}
 R_{nc}^{*} &= R_{nb}R_{bc} \\
 p_{nc}^{*} &= p_{nb} + R_{nb} p_{bc} \\
 v_{nc}^{*} &= v_{nb} + R_{nb} v_{bc} 
 \end{aligned}
-$$
+```
 
 The Jacobian of x for F:
 
@@ -509,23 +509,23 @@ $$
 #### Proof of (23) $J^\mathscr{R}_{s_i}$:
 According to A1-1: 
 
-$$
+```math
 \frac{\partial{R^*_{nc}}}{\partial R_{nb}} = R_{bc}^{-1}
-$$
+```
 
 According to A2-2 and A3-1: 
 
-$$
+```math
 \frac{\partial{p_{nc}^*}}{\partial R_{nb}} 
 =\frac{ R_{nc}^{-1}( R_{nb}\exp(\widehat{\delta \theta_{b}})p_{bc}- R_{nb}p_{bc})}{\delta \theta_{b}} \\
 = -R^{-1}_{bc} \widehat{p_{bc}}
-$$
+```
 
-$$
+```math
 \frac{\partial{v_{nc}^*}}{\partial R_{nb}} =
 \frac{ R_{nc}^{-1}( R_{nb}\exp(\widehat{\delta \theta_{b}})v_{bc}- R_{nb}v_{bc})}{\delta \theta_{b}} \\
 = -R^{-1}_{bc} \widehat{v_{bc}}
-$$
+```
 
 
 According to A1-3 and (22)(25): 
@@ -561,7 +561,7 @@ $$
 ### A-4. Proof of Local $\mathscr{L}$ (23)(24)
 The $\mathscr{L}$ function:
 
-$$
+```math
 r_{jj^*}=\mathscr{L}(s_j,s_j^*) =
 \begin{bmatrix}
  \Delta{R} \\  
@@ -573,7 +573,7 @@ r_{jj^*}=\mathscr{L}(s_j,s_j^*) =
  R_j^{-1} (p_j^* - p_j)  \\  
  R_j^{-1} (v_j^* - v_j) \\   
 \end{bmatrix} 
-$$
+```
 
 
 

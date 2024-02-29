@@ -19,15 +19,15 @@ We need to find an optimal set of vertices (i.e. $V$) to minimize the overall co
 Assuming the number of vertices in the graph is n and the number of edges is m, the block sizes of J, r, H, and g are m x n, m x 1, n x n, and n x 1, respectively. We notice that the size of H and g is independent of m.
 
 The hessian matrix can be calculated as:
-$$ 
-H  =  J^T \Sigma^{-1} J
+```math
+H = J^T \Sigma^{-1} J
 = \begin{bmatrix}
 \ddots & \vdots & \vdots \\\\ 
  \vdots & \sum_{e_k \in E} {J_{i}^k}^T \Sigma^{-1}_{k} J_j^k & \vdots \\\\ 
 \vdots & \vdots & \ddots
 \end{bmatrix}
  \tag{2}
-$$
+```
 
 ### The gradient $g$
 
@@ -56,10 +56,10 @@ $$
 
 $x$ is a the parameter of $\varphi$, and $\delta$ is a small increment to $x$.
 
-The the transfrom error of two lie groups can define as:
-$$
-    \varphi(A,B) = Z^{-1}A^{{-1}}B \tag{5}
-$$
+The transform error of two lie groups can define as:
+$`
+\varphi(A,B) = Z^{-1}A^{{-1}}B \tag{5}
+`$
 
 Where $A$ and $B$ are the two lie groups, which represent the poses of two vertices. The $Z$ represents the relative pose of $A$ nad $B$, which usually measured by odometry or loop-closing.
 
@@ -78,9 +78,9 @@ $$
 $$
 
 Hence:
-$$
+$`
    J_A = -B^{-1}A \tag{7}
-$$
+`$
 
 
 $$
@@ -94,9 +94,9 @@ $$
 $$
 
 Hence:
-$$
+$`
    J_B = I \tag{9}
-$$
+`$
 
 ### If A and B are SE2
 
@@ -112,8 +112,8 @@ $$
 $$
 
 
-Where $\delta = \begin{bmatrix} v \\ w \end{bmatrix} \in \mathfrak{se}(2) $
-$\omega$: the parameter of rotation (is a scalar). $[w]_+ = \begin{bmatrix} 0 & -w \\ w & 0 \end{bmatrix} $
+Where $`\delta = \begin{bmatrix} v \\ w \end{bmatrix} \in \mathfrak{se}(2) $
+$\omega$: the parameter of rotation (is a scalar). $[w]_+ = \begin{bmatrix} 0 & -w \\ w & 0 \end{bmatrix} `$
 
 $v$: the parameters of translation (is a 2d vector).
 
@@ -131,7 +131,7 @@ $$
 
 We substitute (10) and (11) into (6), we get:
 
-$$
+```math
 \begin{aligned}
     \exp(\widehat{J_A\delta}) 
     &= -\exp(T_{BA} \hat{\delta} T_{BA}^{{-1}}) \\
@@ -185,7 +185,7 @@ $$
 )
 \end{aligned} 
 \tag{12}
-$$
+```
 
 According to (10), we can rewrite (12) as:
 
@@ -203,7 +203,7 @@ $$
 \end{aligned} 
 $$
 
-Where $t^{\perp} = [1]_+  t=\begin{bmatrix} -t_2 \\ t_1 \end{bmatrix}$ 
+Where $`\t^{\perp} = [1]_+  t=\begin{bmatrix} -t_2 \\ t_1 \end{bmatrix}`$ 
 
 Hence: 
 
@@ -241,7 +241,7 @@ $v$: the parameters of translation (is a 3d vector).
 
 Similar to (12), we get:
 
-$$
+```math
 \begin{aligned}
     \exp(\widehat{J_A\delta}) 
     &= -\exp(T_{BA} \hat{\delta} T_{BA}^{{-1}}) \\
@@ -289,11 +289,11 @@ $$
         ) 
 \end{aligned}
 \tag{16}
-$$
+```
 
 According to (10), we can rewrite (16) as:
 
-$$
+```math
 \begin{aligned}
 \exp(\widehat{J_A\delta}) 
 &=-\exp(\widehat{
@@ -318,22 +318,22 @@ $$
     })
 \end{aligned}
 \tag{17}
-$$
+```
 
 Hence: 
 
-$$
+```math
    J_A = -\begin{bmatrix}  
         R_{BA} & [t_{BA}]_{\times}R_{BA}  \\
         0 & R_{BA} 
     \end{bmatrix} \tag{18} 
-$$
+```
 
-similer with (9):
+similar with (9):
 
-$$
+```math
 J_B = I \tag{19}
-$$
+```
 
 
 
