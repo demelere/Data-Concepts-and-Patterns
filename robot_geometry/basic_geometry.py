@@ -1,9 +1,6 @@
 import numpy as np
 from geometry_plot import *
 
-# https://zhuanlan.zhihu.com/p/548579394
-
-
 def eigen(A):
     eigenValues, eigenVectors = np.linalg.eig(A)
     idx = np.argsort(eigenValues)[::-1]
