@@ -5,8 +5,8 @@ import matplotlib.pyplot as plt
 from pypcd import pypcd
 # pc1 = pypcd.PointCloud.from_path('robot_geometry/2.pcd')
 
-pcd1 = o3d.io.read_point_cloud("/Users/liuyang/workspace/MathematicalRobotics/robot_geometry/1.pcd", format='pcd')
-pcd2 = o3d.io.read_point_cloud("/Users/liuyang/workspace/MathematicalRobotics/robot_geometry/2.pcd", format='pcd')
+pcd1 = o3d.io.read_point_cloud("/robot_geometry/1.pcd", format='pcd')
+pcd2 = o3d.io.read_point_cloud("/robot_geometry/2.pcd", format='pcd')
 pcd1.paint_uniform_color([0.1, 0.9, 0.1])
 pcd2.paint_uniform_color([0.9, 0.1, 0.1])
 pc = np.asarray(pcd1.points)
