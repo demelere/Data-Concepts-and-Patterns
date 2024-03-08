@@ -147,3 +147,8 @@ I & [ - a ]_{\times} \\
 \tag{12}
 ```
 
+![gauss newton for 2d point matching](../imgs/demo2d.gif)
+
+![gauss newton for 3d point matching](../imgs/demo3d.gif)
+
+![gauss newton for linear regression](../imgs/demo_line.png)
