@@ -334,9 +334,3 @@ similar with (9):
 ```math
 J_B = I \tag{19}
 ```
-
-
-
-
-
-
