@@ -11,3 +11,13 @@ In a nutshell, diffusion models are trained by:
 3. Predicting $\epsilon$ (direction of noise) from by minimizing squared loss
 
 This amounts to training a $\theta$-parameterized neural network $\epsilon_\theta(x, \sigma)$, by minimizing the loss function
+
+
+#### Training set $\mathcal{K}$
+Training set: $\mathcal{K}$ is the mathematical way of representing the collection of all possible data/training examples that the model could learn from.  
+
+$\mathbb{R}^{c\times h \times w}$ describes the space of these images/training data
+So for images, $\mathbb{R}$ stands for real numbers, while ${c\times h \times w}$ represents the dimensions of the images in terms of color channels (c), height (h), and width (w).
+
+#### Adding noise
+Original Example ($x_0$): This is your starting point, an original piece of data from the set $\mathcal{K}$.
