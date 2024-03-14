@@ -12,9 +12,6 @@ In a nutshell, diffusion models are trained by:
 
 This amounts to training a $\theta$-parameterized neural network $\epsilon_\theta(x, \sigma)$, by minimizing the loss function
 
-
-
-
 #### Understanding the training set $\mathcal{K}$
 Training set: $\mathcal{K}$ is the mathematical way of representing the collection of all possible data/training examples that the model could learn from.  
 
@@ -42,6 +39,58 @@ Predicting the Noise: The next step is teaching a computer model to guess the no
 Training the Model: We do this through a process called training, where we adjust the parameters (θ) of our model to get better at predicting the noise (ϵ). The model, (x,σ), tries to predict the noise that was added to the original data, given the noisy data and the noise level (σ).
 
 Minimizing Loss: The model's performance is measured using a loss function, which tells us how far off its predictions are from the actual noise. The goal of training is to minimize this loss, meaning we want our model to be as accurate as possible in predicting the added noise.
+
+In practice, this is done by the following simple training_loop that is the heart of training the diffusion model:
+```
+def training_loop(loader  : DataLoader,
+                  model   : nn.Module,
+                  schedule: Schedule,
+                  epochs  : int = 10000):
+    optimizer = torch.optim.Adam(model.parameters())
+    for _ in range(epochs):
+        for x0 in loader:
+            optimizer.zero_grad()
+            sigma, eps = generate_train_sample(x0, schedule)
+            eps_hat = model(x0 + sigma * eps, sigma)
+            loss = nn.MSELoss()(eps_hat, eps)
+            optimizer.backward(loss)
+            optimizer.step()
+```
+It receives several arguments: 
+* `loader`: A DataLoader that batches your training data, allowing the model to learn from a subset of the data at a time, which is efficient and effective for training on large datasets.
+* `model`: Your neural network model, an instance of nn.Module, which will learn to reverse the diffusion process.
+* `schedule`: A schedule that determines the noise level (σ) for each training sample.
+* `epochs`: The number of times the training loop will run through the entire dataset.
+
+Inside the training loop:
+* Optimizer Setup: It uses Adam optimizer, a popular choice for deep learning tasks, to adjust the model's parameters (θ) to minimize the loss function.
+* Looping Through Data: It iterates through each epoch and then through each batch of original data points (x0) from the DataLoader.
+* Generating Noise Samples: For each x0, it generates a noise level (σ) and a noise vector (ϵ) using the generate_train_sample function.
+* Model Prediction: The model predicts the noise () added to the noisy version of 
+* Loss Calculation: It calculates the mean squared error (MSE) loss between the predicted noise () and the actual noise (ϵ).
+* Backpropagation and Optimization: The optimizer adjusts the model parameters to minimize this loss, improving the model's prediction accuracy over iterations.
+
+The training loop iterates over batches of x0, then samples noise level sigma and noise vector eps using generate_train_sample:
+```
+def generate_train_sample(x0: torch.FloatTensor, schedule: Schedule):
+    sigma = schedule.sample_batch(x0)
+    eps = torch.randn_like(x0)
+    return sigma, eps
+```
+
+This function is responsible for preparing the training samples for the diffusion model.  
+
+It's arguments are 
+* x0, the original data points
+* `schedule`, The schedule from which the noise level (σ) is sampled.
+
+Process:
+It samples a noise level (σ) for each batch based on the schedule.
+It generates a random noise vector (ϵ) with the same shape as x0, following a standard normal distribution (torch.randn_like(x0)).
+
+Returns: The function returns both the noise level (σ) and the noise vector (ϵ), which are then used to generate noisy data and train the model.
+
+This approach allows the model to learn the process of reversing the diffusion (or noise addition) process, enabling it to generate data similar to the original dataset after training.
 
 Predicting the Noise (): The model, denoted as, is tasked with guessing the noise that was added to the original data. represents the parameters or the internal settings of the model that can be adjusted through training. The goal is to make these guesses as accurate as possible.
 
