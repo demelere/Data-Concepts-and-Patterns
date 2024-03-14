@@ -90,6 +90,32 @@ It generates a random noise vector (ϵ) with the same shape as x0, following a s
 
 Returns: The function returns both the noise level (σ) and the noise vector (ϵ), which are then used to generate noisy data and train the model.
 
+##### Noise schedules
+
+In practice, $\sigma$ is not sampled uniformly from the interval $[\sigma_\min,
+\sigma_\max]$, instead this interval is discretized into N distinct values called a $\sigma$ schedule: $\{ \sigma_t \}_{t=1}^N$, and $\sigma$ is instead sampled uniformly from the N possible values of $\sigma_t$. We define the Schedule class that encapsulates the list of possible sigmas, and sample from this list during training.
+
+```
+class Schedule:
+    def __init__(self, sigmas: torch.FloatTensor):
+        self.sigmas = sigmas
+    def __getitem__(self, i) -> torch.FloatTensor:
+        return self.sigmas[i]
+    def __len__(self) -> int:
+        return len(self.sigmas)
+    def sample_batch(self, x0:torch.FloatTensor) -> torch.FloatTensor:
+        return self[torch.randint(len(self), (x0.shape[0],))].to(x0)
+```
+
+We'll use a log-linear schedule defined below:
+```
+class ScheduleLogLinear(Schedule):
+    def __init__(self, N: int, sigma_min: float=0.02, sigma_max: float=10):
+        super().__init__(torch.logspace(math.log10(sigma_min), math.log10(sigma_max), N))
+```
+But other commonly used schedules include ScheduleDDPM for pixel-space diffusion models and ScheduleLDM for latent diffusion models such as Stable Diffusion. The following plot compares these three schedules with default parameters.
+
+
 This approach allows the model to learn the process of reversing the diffusion (or noise addition) process, enabling it to generate data similar to the original dataset after training.
 
 Predicting the Noise (): The model, denoted as, is tasked with guessing the noise that was added to the original data. represents the parameters or the internal settings of the model that can be adjusted through training. The goal is to make these guesses as accurate as possible.
