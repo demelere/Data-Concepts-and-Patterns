@@ -121,3 +121,4 @@ This approach allows the model to learn the process of reversing the diffusion (
 Predicting the Noise (): The model, denoted as, is tasked with guessing the noise that was added to the original data. represents the parameters or the internal settings of the model that can be adjusted through training. The goal is to make these guesses as accurate as possible.
 
 Loss Function: The quality of the model's guesses is evaluated using a loss function, which measures the difference between the model's predicted noise and the actual noise added. The objective of training is to minimize this difference, making the model's predictions as close as possible to the true noise.
+
