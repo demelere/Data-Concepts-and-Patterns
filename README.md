@@ -49,7 +49,8 @@ Optimizing parameters and estimating states from sensor measurements. They are u
 * Camera Reprojection Error: Camera reprojection error measures the discrepancy between the observed image features and their corresponding projected positions in the camera's image plane. It is a common metric used in camera calibration, structure-from-motion, and visual SLAM systems to refine camera parameters and optimize the reconstruction accuracy.
 
 To Do: 
+* Diffusion
 * Sensor fusion algorithms by abstraction level
-* Diffusion and state space math involving Gaussian processes and Markov Chains
+* State space math involving Gaussian processes and Markov Chains
 * Vector derivative transport theorem
-* Quaternions for 3D and kinematnics
+* Quaternions for 3D and kinematics

@@ -18,10 +18,10 @@ Training set: $\mathcal{K}$ is the mathematical way of representing the collecti
 $\mathbb{R}^{c\times h \times w}$ describes the space of these images/training data
 So for images, $\mathbb{R}$ stands for real numbers, while ${c\times h \times w}$ represents the dimensions of the images in terms of color channels (c), height (h), and width (w).
 
-#### Training the model x0
-Start with an example: We pick an original piece of data from our set (K).
-Add Noise: We then add some noise to this data. The amount of noise is determined by a noise level () that we choose from a range between a minimum and maximum value. The actual noise () is random but follows a known pattern (normally distributed, which means it's the kind of randomness you see in a lot of natural processes, where most values are near the mean).
-Create Noisy Data (): This gives us a new, noisier version of our original data () The formula just means "original data plus some noise.
+#### Training the model $x_0$
+* Start with an example ($x_0$): We pick an original piece of data from our set ($\mathcal{K}$).
+* Add Noise: We then add some noise to this data. The amount of noise is determined by a noise level ($\sigma$) that we choose from a range between a minimum and maximum value. The actual noise ($\epsilon$) is random but follows a known pattern (normally distributed, which means it's the kind of randomness you see in a lot of natural processes, where most values are near the mean).
+* Create Noisy Data (x, \sigma): This gives us a new, noisier version of our original data () The formula just means "original data plus some noise.
 
 ##### Add noise
 Original Example ($x_0$): This is your starting point, an original piece of data from the set $\mathcal{K}$.
