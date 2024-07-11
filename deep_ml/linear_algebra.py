@@ -233,3 +233,132 @@ def mean_matrix(matrix, mode='row'):
 # matrix1 = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
 # print(mean_matrix(matrix1, mode='column'))  # [4.0, 5.0, 6.0]
 # print(mean_matrix(matrix1, mode='row'))     # [2.0, 5.0, 8.0]
+
+def scalar_multiply(matrix, scalar):
+    """
+    Multiplies each element in a matrix by a scalar value by iterating through each row and using a list comprehension to multiply each element by the scalar.
+    Returns the resulting matrix.
+    """
+    result = []
+    
+    for row in matrix:
+        scaled_row = [element * scalar for element in row] # multiply each element in the row by the scalar
+        result.append(scaled_row)
+    
+    return result
+
+# matrix = [[1, 2], [3, 4]]
+# scalar = 2
+# print(scalar_multiply(matrix, scalar))  # [[2, 4], [6, 8]]
+
+def eigenvalues_2x2(matrix):
+    """
+    Takes a single argument 2x2 matrix, a list of lists.
+    Returns the eigenvalues of the input matrix as a sorted list of two values.
+    """
+    if len(matrix) != 2 or len(matrix[0]) != 2 or len(matrix[1]) != 2: # check if matrix is 2x2
+        raise ValueError("Input matrix must be a 2x2 matrix.")
+    
+    a = 1 # calculate coefficients of the characteristic equation
+    b = -1 * (matrix[0][0] + matrix[1][1])
+    c = matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0]
+    
+    discriminant = b**2 - 4 * a * c # calculate discriminant
+    
+    if discriminant >= 0: # calculate eigenvalues
+        eigenvalue1 = (-b + math.sqrt(discriminant)) / (2 * a)
+        eigenvalue2 = (-b - math.sqrt(discriminant)) / (2 * a)
+        return sorted([eigenvalue1, eigenvalue2], reverse=True)
+    else:
+        raise ValueError("Eigenvalues are complex and not handled in this implementation.")
+
+# import math
+# matrix = [[2, 1], [1, 2]]
+# print(eigenvalues_2x2(matrix))  # [3.0, 1.0]
+
+import numpy as np
+
+def matrix_transform(A, T, S):
+    """
+    Takes three arguments: A (a list of lists representing the matrix), T (a list of lists representing the transformation matrix), and S (a list of lists representing the transformation matrix).
+    Checks if the matrices T and S are invertible, calculates the inverse of matrices T and S, and computes the transformed matrix A using the inverse of T and S.
+    Returns the transformed matrix as a list of lists.
+    """
+
+    if not np.linalg.det(T): # check if matrices T and S are invertible
+        raise ValueError("Matrix T is not invertible.")
+    if not np.linalg.det(S):
+        raise ValueError("Matrix S is not invertible.")
+    
+    T_inv = np.linalg.inv(T) # calculate the inverse of matrices T and S
+    S_inv = np.linalg.inv(S)
+    
+    transformed = np.matmul(np.matmul(T_inv, A), S) # compute transformed matrix A using T_inv and S_inv
+    
+    return transformed.tolist()
+
+# A = [[1, 2], [3, 4]]
+# T = [[2, 0], [0, 2]]
+# S = [[1, 1], [0, 1]]
+# print(matrix_transform(A, T, S))  # [[0.5, 1.0], [1.5, 2.0]]
+
+def inverse_2x2(matrix):
+    """
+    Takes a single argument matrix (a list of lists representing a 2x2 matrix).
+    Computes the determinant of the matrix, checks if the matrix is invertible, and calculates the inverse of the matrix.
+    """
+    if len(matrix) != 2 or len(matrix[0]) != 2 or len(matrix[1]) != 2: # check if matrix is 2x2
+        raise ValueError("Input matrix must be a 2x2 matrix.")
+    
+    a, b = matrix[0][0], matrix[0][1] # extract elements of the matrix
+    c, d = matrix[1][0], matrix[1][1]
+    
+    determinant = a * d - b * c # calculate the determinant of the matrix
+    
+    if determinant == 0: # check if the matrix is invertible
+        return None  
+    
+    inverse = [[d / determinant, -b / determinant],# calculate the inverse matrix
+               [-c / determinant, a / determinant]]
+    
+    return inverse
+
+matrix = [[4, 7], [2, 6]]
+print(inverse_2x2(matrix))  # [[0.6, -0.7], [-0.2, 0.4]]
+
+def matrix_multiply(A, B):
+    """
+    takes two arguments: A (a list of lists representing the first matrix) and B (a list of lists representing the second matrix).
+    returns the resulting matrix after multiplying the two input matrices.
+    """
+    if len(A[0]) != len(B): # check if the matrices can be multiplied
+        return -1 
+    
+    rows_A = len(A) # initialize the resulting matrix with zeros
+    cols_A = len(A[0])
+    cols_B = len(B[0])
+    C = [[0] * cols_B for _ in range(rows_A)]
+    
+    for i in range(rows_A): # perform matrix multiplication
+        for j in range(cols_B):
+            for k in range(cols_A):
+                C[i][j] += A[i][k] * B[k][j]
+    
+    return C
+
+# A = [[1, 2],
+#      [2, 4]]
+
+# B = [[2, 1],
+#      [3, 4]]
+
+# print(matrix_multiply(A, B))  # Output: [[8, 9], [16, 18]]
+
+# A = [[1, 2],
+#      [2, 4]]
+
+# B = [[2, 1],
+#      [3, 4],
+#      [4, 5]]
+
+# print(matrix_multiply(A, B))  # Output: -1
