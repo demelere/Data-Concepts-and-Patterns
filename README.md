@@ -2,6 +2,12 @@
 
 Notebook of mathematical, physical, and other theoretical and dense underpinnings relevant to AI, robotics, and spatial computing.  The goal is to implement widely used robotics algorithms or mathematical proofs in Python.
 
+#### Geometry of Motion 
+* Special orthogonal group SO(3) for rotations, and the special Euclidean group SE(3) for rigid body motions
+
+#### Properties of rotating mass
+
+
 #### Motion Planning and Pathfinding (Search)
 Exploring the configuration space to generate feasible collision-free paths from start to goal in a given environment. They balance between exploration and exploitation to efficiently find optimal or near-optimal paths.
   
@@ -25,6 +31,8 @@ Estimating the pose (position and orientation) of a robot within its environment
 * Inverse
 * Lagrange
 * Denavit-Hartenberg
+
+* Lagrange multipliers and generalized coordinates (e.g. in a robotic arm with joints constrained to move in certain ways, the equations of motion can be derived using Lagrangian mechanics with constraints applied as Lagrange multipliers, ensuring movements adhere to mechanical limits).  
 
 #### Spatial Representation and Transformation:
 Representing and manipulating spatial orientations and transformations of objects or robots in three-dimensional space. They are fundamental for tasks like robot motion planning, kinematics, and control.
