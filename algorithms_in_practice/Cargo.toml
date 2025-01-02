@@ -8,3 +8,7 @@ edition = "2021"
 [[example]]
 name = "object_tracking"
 path = "examples/object_tracking.rs"
+
+[[example]]
+name = "behavior_tree"
+path = "examples/behavior_tree.rs"
