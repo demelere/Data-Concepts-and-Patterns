@@ -12,3 +12,7 @@ path = "examples/object_tracking.rs"
 [[example]]
 name = "behavior_tree"
 path = "examples/behavior_tree.rs"
+
+[[example]]
+name = "robot_pathfinding"
+path = "examples/robot_pathfinding.rs"
