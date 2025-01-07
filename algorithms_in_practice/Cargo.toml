@@ -16,3 +16,7 @@ path = "examples/behavior_tree.rs"
 [[example]]
 name = "robot_pathfinding"
 path = "examples/robot_pathfinding.rs"
+
+[[example]]
+name = "energy_optimization"
+path = "examples/energy_optimization.rs"
