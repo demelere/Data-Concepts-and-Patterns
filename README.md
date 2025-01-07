@@ -4,6 +4,12 @@ Notebook of mathematical, physical, and other theoretical and dense underpinning
 
 #### Algorithms in Practice
 
+##### Dynamic Programming
+###### Robotics
+
+##### Sliding Window
+##### Robotics
+
 ##### Behavior Trees
 ###### Robotics
 Modules and Imports:
@@ -104,6 +110,8 @@ PerformTask:
 This is the second child of the Selector node. It simulates a task that consumes battery power. It returns Success after execution.
 
 This tree structure allows the robot to first check its battery level, and if sufficient, attempt to move to a target. If moving to the target fails, it will then attempt to perform a task. The behavior tree's modularity and hierarchical structure make it a powerful tool for organizing complex decision-making processes.
+
+
 
 #### Geometry of Motion 
 * Special orthogonal group SO(3) for rotations, and the special Euclidean group SE(3) for rigid body motions
