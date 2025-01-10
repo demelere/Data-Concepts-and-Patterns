@@ -7,6 +7,73 @@ Notebook of mathematical, physical, and other theoretical and dense underpinning
 ##### Dynamic Programming
 ###### Robotics
 
+##### Graphs
+##### Robotics
+The example demonstrates a simple pathfinding algorithm using a grid-based approach. It uses a breadth-first search (BFS) algorithm to find the shortest path from a start position to a goal position on a grid with obstacles.
+
+Overview
+The example demonstrates a simple pathfinding algorithm using a grid-based approach. It uses a breadth-first search (BFS) algorithm to find the shortest path from a start position to a goal position on a grid with obstacles.
+Flow of Execution
+1. Grid Initialization:
+Input: A 10x10 grid is created using Grid::new(10, 10).
+Output: A Grid object with specified dimensions and no obstacles initially.
+
+2. Obstacle Setup:
+Input: Obstacles are added to the grid to create a maze-like environment.
+Output: The grid now contains obstacles at specified positions, making some paths impassable.
+
+Path Planner Initialization:
+Input: A RobotPathPlanner is initialized with the grid.
+Output: A RobotPathPlanner object that can be used to find paths on the grid.
+
+Define Start and Goal Positions:
+Input: Start position (1, 1) and goal position (8, 8) are defined using Position::new.
+Output: Two Position objects representing the start and goal.
+
+Pathfinding Execution:
+Input: The find_path method is called on the RobotPathPlanner with the start and goal positions.
+Output:
+If a path is found, it returns a vector of Position objects representing the path.
+If no path is found, it returns None.
+
+Path Reconstruction:
+Input: If a path is found, the reconstruct_path method is used to backtrack from the goal to the start using the came_from map.
+Output: A vector of Position objects representing the path from start to goal.
+
+7. Path Length Calculation:
+Input: The path vector is passed to calculate_path_length.
+Output: The total length of the path in grid units, calculated using the Manhattan distance between consecutive positions.
+
+Grid Visualization:
+Input: The path vector is passed to print_path.
+Output: A visual representation of the grid is printed, showing the path (*), obstacles (█), and empty spaces (·).
+Output:
+The program prints the path length and the coordinates of each step in the path.
+
+Graph algorithms are used to find the shortest path from a start position to a goal position on a grid. The grid is treated as a graph where each cell is a node, and edges exist between adjacent cells. Here's how graph algorithms are applied in this context:
+
+Graph Representation
+1. Nodes:
+Each cell in the grid is considered a node in the graph. The Position struct represents these nodes with x and y coordinates.
+2. Edges:
+Edges exist between adjacent cells (nodes) that are not blocked by obstacles. This is akin to a 4-connected grid where each node can connect to its north, south, east, and west neighbors.
+Graph Algorithm: Breadth-First Search (BFS)
+The pathfinding algorithm used in this example is a form of Breadth-First Search (BFS), which is a classic graph traversal algorithm. Here's how BFS is applied:
+1. Initialization:
+A queue (VecDeque) is initialized with the start position.
+A visited set is used to keep track of nodes that have already been explored.
+A came_from map is used to reconstruct the path once the goal is reached.
+2. Traversal:
+The algorithm dequeues a node (current position) from the front of the queue.
+It checks if the current node is the goal. If so, it reconstructs the path using the came_from map.
+For each valid neighbor of the current node (using get_neighbors), if the neighbor hasn't been visited, it is marked as visited, added to the queue, and its parent is recorded in the came_from map.
+
+Path Reconstruction:
+Once the goal is reached, the path is reconstructed by backtracking from the goal to the start using the came_from map.
+
+4. Output:
+If a path is found, it is returned as a sequence of Position objects. If no path is found, the function returns None.
+
 ##### Sliding Window
 ##### Robotics
 
