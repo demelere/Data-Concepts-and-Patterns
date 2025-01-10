@@ -20,3 +20,7 @@ path = "examples/robot_pathfinding.rs"
 [[example]]
 name = "energy_optimization"
 path = "examples/energy_optimization.rs"
+
+[[example]]
+name = "neural_architecture_search"
+path = "examples/neural_architecture_search.rs"
