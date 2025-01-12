@@ -24,3 +24,11 @@ path = "examples/energy_optimization.rs"
 [[example]]
 name = "neural_architecture_search"
 path = "examples/neural_architecture_search.rs"
+
+[[example]]
+name = "factor_graph_basic"
+path = "examples/factor_graph_basic.rs"
+
+[[example]]
+name = "factor_graph_lidar"
+path = "examples/factor_graph_lidar.rs"
