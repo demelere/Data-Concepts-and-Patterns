@@ -8,7 +8,7 @@ Notebook of mathematical, physical, and other theoretical and dense underpinning
 ###### Robotics
 
 ##### Graphs
-##### Robotics
+###### Robotics
 The example demonstrates a simple pathfinding algorithm using a grid-based approach. It uses a breadth-first search (BFS) algorithm to find the shortest path from a start position to a goal position on a grid with obstacles.
 
 Overview
@@ -75,7 +75,24 @@ Once the goal is reached, the path is reconstructed by backtracking from the goa
 If a path is found, it is returned as a sequence of Position objects. If no path is found, the function returns None.
 
 ##### Sliding Window
-##### Robotics
+###### Robotics
+
+###### Computer Vision
+This is a video depth estimation pipeline that converts regular RGB video frames into depth maps (showing how far each pixel is from the camera). It adapts a latent diffusion model (LDM) that was originally designed for single images to work with videos, while maintaining temporal consistency (making sure the depth estimates don't flicker or jump between frames).
+
+The main trick here is using a sliding window approach that looks at small groups of frames (typically 3 frames at a time, called "snippets") rather than trying to process the entire video at once. This makes the problem more tractable while still maintaining temporal consistency.
+
+###### Processing Flow:
+```Takes input RGB video frames
+Encodes them into a latent space using a VAE (Variational Autoencoder)
+Uses a UNet to predict depth in this latent space
+Decodes the results back to depth maps
+Includes a refinement step to improve temporal consistency```
+
+###### Sliding Window Approach:
+```Processes frames in small groups (snippets)
+Uses variable "dilations" (frame gaps) to capture both local and long-range temporal relationships
+Starts with larger dilations for global consistency, then reduces them for local refinement```
 
 ##### Behavior Trees
 ###### Robotics
